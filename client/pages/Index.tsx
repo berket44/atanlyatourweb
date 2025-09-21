@@ -5,6 +5,7 @@ import SearchBar from "@/components/site/SearchBar";
 import SectionHeading from "@/components/site/SectionHeading";
 import DestinationCard from "@/components/site/DestinationCard";
 import CategoriesStrip from "@/components/site/CategoriesStrip";
+import TourSummaryCard from "@/components/site/TourSummaryCard";
 
 const destinations = [
   {
@@ -37,8 +38,108 @@ const destinations = [
   },
 ];
 
+const tourSummaries = [
+  {
+    title: "Antalya Şehir Turu",
+    summary: "Kaleiçi, Duden Şelalesi ve Konyaaltı sahili ile dolu bir gün.",
+    price: "₺1.200",
+    image: "https://images.unsplash.com/photo-1600271886715-4d3bde1d9742?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Kapadokya Balon Deneyimi",
+    summary: "Peri bacaları üzerinde gün doğumu.",
+    price: "₺4.500",
+    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "İstanbul Boğaz Turu",
+    summary: "Vapur ile Asya-Avrupa arasında tarihi bir rota.",
+    price: "₺950",
+    image: "https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Ege Koyları Tekne Turu",
+    summary: "Turkuaz koylarda yüzme molaları.",
+    price: "₺2.600",
+    image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Pamukkale ve Hierapolis",
+    summary: "Beyaz travertenler ve antik şehir keşfi.",
+    price: "₺1.800",
+    image: "https://images.unsplash.com/photo-1609582848250-8867287cab4c?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Efes Antik Kenti",
+    summary: "Tarihi sokaklarda rehberli yürüyüş.",
+    price: "₺1.900",
+    image: "https://images.unsplash.com/photo-1607326948082-5f3199a5742f?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Bursa Uludağ Kayak",
+    summary: "Gün boyu skipass ve ekipman dahil.",
+    price: "₺3.400",
+    image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Fethiye Yamaç Paraşütü",
+    summary: "Babadağ’dan Ölüdeniz manzarası.",
+    price: "₺3.200",
+    image: "https://images.unsplash.com/photo-1516221031470-8cd59a4ab674?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Nemrut Dağı Güneş Doğumu",
+    summary: "Anıtsal heykeller arasında büyüleyici anlar.",
+    price: "₺2.200",
+    image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Rize Ayder Yaylası",
+    summary: "Karadeniz’in yeşil köşelerinde doğa yürüyüşü.",
+    price: "₺2.000",
+    image: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Mardin Eski Şehir",
+    summary: "Taş evleri ve dar sokaklarıyla kültür turu.",
+    price: "₺1.700",
+    image: "https://images.unsplash.com/photo-1589731441569-3677e8d11940?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Bodrum Gece Hayatı",
+    summary: "Marina ve barlar sokağında eğlence.",
+    price: "₺1.300",
+    image: "https://images.unsplash.com/photo-1566125882310-e7672e36b96a?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Datça Doğa Kaçamağı",
+    summary: "Knidos ve ıssız koylar.",
+    price: "₺2.300",
+    image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Amasra Lezzet Turu",
+    summary: "Balık ve salata molalı Karadeniz günü.",
+    price: "₺1.150",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Kars Doğu Ekspresi",
+    summary: "Kış manzaralarıyla masalsı yolculuk.",
+    price: "₺4.800",
+    image: "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    title: "Ağva Nehir Turu",
+    summary: "Gondol ile sakin bir gün.",
+    price: "₺1.000",
+    image: "https://images.unsplash.com/photo-1516908205727-40afad9449d9?q=80&w=1200&auto=format&fit=crop",
+  },
+];
+
 export default function Index() {
   const [exampleFromServer, setExampleFromServer] = useState("");
+  const [showAllTours, setShowAllTours] = useState(false);
   useEffect(() => {
     fetchDemo();
   }, []);
@@ -52,6 +153,8 @@ export default function Index() {
       console.error("Error fetching hello:", error);
     }
   };
+
+  const visibleTours = showAllTours ? tourSummaries : tourSummaries.slice(0, 8);
 
   return (
     <div>
@@ -97,6 +200,24 @@ export default function Index() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="container max-w-7xl container-px pt-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {visibleTours.map((t) => (
+            <TourSummaryCard key={t.title} {...t} />
+          ))}
+        </div>
+        {!showAllTours && (
+          <div className="mt-6 flex justify-center">
+            <button
+              className="btn btn-outline h-11 px-6"
+              onClick={() => setShowAllTours(true)}
+            >
+              Load JS
+            </button>
+          </div>
+        )}
       </section>
 
       <section className="container max-w-7xl container-px py-14">
