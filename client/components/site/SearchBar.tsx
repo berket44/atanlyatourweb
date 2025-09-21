@@ -21,19 +21,36 @@ export default function SearchBar() {
             <TabsContent value="tur">
               <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Nereye?</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Şehir / Ülke" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Nereye?
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Şehir / Ülke"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Giriş</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Giriş
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Çıkış</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Çıkış
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div className="flex items-end">
-                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                  <button className="btn btn-primary h-11 w-full" type="submit">
+                    Ara
+                  </button>
                 </div>
               </form>
             </TabsContent>
@@ -41,23 +58,45 @@ export default function SearchBar() {
             <TabsContent value="transfer">
               <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Alış Noktası</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Havalimanı / Otel / Adres" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Alış Noktası
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Havalimanı / Otel / Adres"
+                  />
                 </div>
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Varış Noktası</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Havalimanı / Otel / Adres" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Varış Noktası
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Havalimanı / Otel / Adres"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Tarih</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Tarih
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Saat</label>
-                  <input type="time" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Saat
+                  </label>
+                  <input
+                    type="time"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div className="lg:col-span-6 flex items-end">
-                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                  <button className="btn btn-primary h-11 w-full" type="submit">
+                    Ara
+                  </button>
                 </div>
               </form>
             </TabsContent>
@@ -65,19 +104,36 @@ export default function SearchBar() {
             <TabsContent value="arac">
               <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Lokasyon</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Şehir / Ofis" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Lokasyon
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Şehir / Ofis"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Alış Tarihi</label>
-                  <input type="datetime-local" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Alış Tarihi
+                  </label>
+                  <input
+                    type="datetime-local"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Teslim Tarihi</label>
-                  <input type="datetime-local" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Teslim Tarihi
+                  </label>
+                  <input
+                    type="datetime-local"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div className="flex items-end">
-                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                  <button className="btn btn-primary h-11 w-full" type="submit">
+                    Ara
+                  </button>
                 </div>
               </form>
             </TabsContent>
@@ -85,23 +141,47 @@ export default function SearchBar() {
             <TabsContent value="otel">
               <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Şehir / İlçe</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Antalya / Bodrum" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Şehir / İlçe
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Antalya / Bodrum"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Giriş</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Giriş
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Çıkış</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Çıkış
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Kişi</label>
-                  <input type="number" min={1} defaultValue={2} className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Kişi
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    defaultValue={2}
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div className="lg:col-span-1 flex items-end">
-                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                  <button className="btn btn-primary h-11 w-full" type="submit">
+                    Ara
+                  </button>
                 </div>
               </form>
             </TabsContent>
@@ -109,19 +189,36 @@ export default function SearchBar() {
             <TabsContent value="villa">
               <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Bölge</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Kaş / Kalkan / Fethiye" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Bölge
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Kaş / Kalkan / Fethiye"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Giriş</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Giriş
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Çıkış</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Çıkış
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div className="flex items-end">
-                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                  <button className="btn btn-primary h-11 w-full" type="submit">
+                    Ara
+                  </button>
                 </div>
               </form>
             </TabsContent>
@@ -129,19 +226,36 @@ export default function SearchBar() {
             <TabsContent value="otobus">
               <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Nereden</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Şehir" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Nereden
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Şehir"
+                  />
                 </div>
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Nereye</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Şehir" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Nereye
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Şehir"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Tarih</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Tarih
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div className="lg:col-span-1 flex items-end">
-                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                  <button className="btn btn-primary h-11 w-full" type="submit">
+                    Ara
+                  </button>
                 </div>
               </form>
             </TabsContent>
@@ -149,23 +263,45 @@ export default function SearchBar() {
             <TabsContent value="ucak">
               <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Nereden</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Şehir / Havalimanı" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Nereden
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Şehir / Havalimanı"
+                  />
                 </div>
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Nereye</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Şehir / Havalimanı" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Nereye
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Şehir / Havalimanı"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Gidiş</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Gidiş
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Dönüş</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Dönüş
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div className="lg:col-span-6 flex items-end">
-                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                  <button className="btn btn-primary h-11 w-full" type="submit">
+                    Ara
+                  </button>
                 </div>
               </form>
             </TabsContent>
