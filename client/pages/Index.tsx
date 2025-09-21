@@ -195,7 +195,7 @@ export default function Index() {
             className="h-full w-full object-cover"
             loading="eager"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-rose-600/60 via-red-500/40 to-orange-500/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-red-700/70 via-red-600/60 to-black/60" />
         </div>
         <div className="container max-w-7xl container-px py-14 text-white">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
