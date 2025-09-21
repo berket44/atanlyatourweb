@@ -187,8 +187,8 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="relative">
-        <div className="absolute inset-0 -z-10">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <img
             src="https://images.pexels.com/photos/1706725/pexels-photo-1706725.jpeg"
             alt="Antalya kıyı manzarası - tur temalı arka plan"
@@ -197,7 +197,7 @@ export default function Index() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-red-700/70 via-red-600/60 to-black/60" />
         </div>
-        <div className="container max-w-7xl container-px py-14 text-white">
+        <div className="container max-w-7xl container-px py-14 text-white relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl sm:text-3xl font-extrabold leading-tight">
