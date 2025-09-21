@@ -18,7 +18,11 @@ export default function Header() {
       <div className="container max-w-7xl container-px">
         <div className="flex h-16 items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Link to="/" className="flex items-center gap-2" aria-label="Antalya Tourbox anasayfa">
+            <Link
+              to="/"
+              className="flex items-center gap-2"
+              aria-label="Antalya Tourbox anasayfa"
+            >
               <img
                 src="https://antalyatourbox.com/image/cache/catalog/yeni-logo-400x84.png.webp"
                 alt="Antalya Tourbox"

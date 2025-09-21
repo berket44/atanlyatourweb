@@ -89,7 +89,9 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t pt-6 text-sm text-slate-500">
-          <p>© {new Date().getFullYear()} Antalya Tourbox. Tüm Hakları Saklıdır.</p>
+          <p>
+            © {new Date().getFullYear()} Antalya Tourbox. Tüm Hakları Saklıdır.
+          </p>
           <div className="flex items-center gap-4">
             <Link to="#" className="hover:text-slate-700">
               Twitter
