@@ -18,13 +18,20 @@ export default function Header() {
       <div className="container max-w-7xl container-px">
         <div className="flex h-16 items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Link to="/" className="flex items-center gap-2">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white font-bold">
-                DT
-              </span>
-              <span className="text-xl font-extrabold tracking-tight text-slate-900">
-                Dreams<span className="text-primary">Tour</span>
-              </span>
+            <Link
+              to="/"
+              className="flex items-center gap-2"
+              aria-label="Antalya Tourbox anasayfa"
+            >
+              <img
+                src="https://antalyatourbox.com/image/cache/catalog/yeni-logo-400x84.png.webp"
+                alt="Antalya Tourbox"
+                className="h-9 w-auto"
+                width={120}
+                height={25}
+                loading="eager"
+                decoding="async"
+              />
             </Link>
           </div>
 
