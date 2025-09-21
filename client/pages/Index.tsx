@@ -188,10 +188,15 @@ export default function Index() {
       </section>
 
       <section className="relative">
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-rose-600 via-red-500 to-orange-500 animate-bg-pan"
-          style={{ backgroundSize: "200% 200%" }}
-        />
+        <div className="absolute inset-0 -z-10">
+          <img
+            src="https://images.pexels.com/photos/1706725/pexels-photo-1706725.jpeg"
+            alt="Antalya kıyı manzarası - tur temalı arka plan"
+            className="h-full w-full object-cover"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-rose-600/60 via-red-500/40 to-orange-500/60" />
+        </div>
         <div className="container max-w-7xl container-px py-14 text-white">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
