@@ -27,7 +27,16 @@ export default function Hero({
   }, [imgs.length]);
 
   return (
-    <section className="relative h-[350px]">
+    <section
+      className="relative h-[350px]"
+      style={{
+        backgroundImage:
+          "url(https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=85&w=2400&auto=format&fit=crop)",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       {/* Background slider */}
       <div className="absolute inset-0 -z-10">
         <div className="relative h-full w-full overflow-hidden">
