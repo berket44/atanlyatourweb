@@ -13,6 +13,8 @@ export default function SearchBar() {
                 <TabsTrigger value="arac">ARAÇ KİRALAMA</TabsTrigger>
                 <TabsTrigger value="otel">OTELLER</TabsTrigger>
                 <TabsTrigger value="villa">VİLLA KİRALAMA</TabsTrigger>
+                <TabsTrigger value="yat">YAT KİRALAMA</TabsTrigger>
+                <TabsTrigger value="cruise">CRUISE TURLARI</TabsTrigger>
                 <TabsTrigger value="otobus">OTOBÜS BİLETİ</TabsTrigger>
                 <TabsTrigger value="ucak">UÇAK BİLETİ</TabsTrigger>
               </div>
@@ -51,6 +53,53 @@ export default function SearchBar() {
                   <button className="btn btn-primary h-11 w-full" type="submit">
                     Ara
                   </button>
+                </div>
+              </form>
+            </TabsContent>
+
+            <TabsContent value="yat">
+              <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+                <div className="lg:col-span-2">
+                  <label className="block text-xs font-semibold text-slate-700">Bölge</label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Antalya / Bodrum / Marmaris"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700">Kalkış Tarihi</label>
+                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700">Süre (gün)</label>
+                  <input type="number" min={1} defaultValue={1} className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                </div>
+                <div className="flex items-end">
+                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                </div>
+              </form>
+            </TabsContent>
+
+            <TabsContent value="cruise">
+              <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+                <div className="lg:col-span-2">
+                  <label className="block text-xs font-semibold text-slate-700">Kalkış Limanı</label>
+                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="İstanbul / İzmir / Kuşadası" />
+                </div>
+                <div className="lg:col-span-2">
+                  <label className="block text-xs font-semibold text-slate-700">Rota</label>
+                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ege Adaları / Akdeniz" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700">Gidiş</label>
+                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700">Dönüş</label>
+                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                </div>
+                <div className="lg:col-span-6 flex items-end">
+                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
                 </div>
               </form>
             </TabsContent>

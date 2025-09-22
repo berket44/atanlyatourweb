@@ -41,6 +41,26 @@ const defaultCats: Category[] = [
     image:
       "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=400&auto=format&fit=crop",
   },
+  {
+    name: "Kamp",
+    image:
+      "https://images.unsplash.com/photo-1504280390368-3971f660dd4b?q=80&w=400&auto=format&fit=crop",
+  },
+  {
+    name: "Gastronomi",
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=400&auto=format&fit=crop",
+  },
+  {
+    name: "Aile",
+    image:
+      "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=400&auto=format&fit=crop",
+  },
+  {
+    name: "Gece Hayatı",
+    image:
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=400&auto=format&fit=crop",
+  },
 ];
 
 export default function CategoriesStrip({
