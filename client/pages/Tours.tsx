@@ -170,7 +170,14 @@ const REGIONS = [
   "Avrupa",
   "Orta Doğu",
 ];
-const DEPARTURES = ["Antalya", "İstanbul", "İzmir", "Ankara", "Bursa", "Trabzon"];
+const DEPARTURES = [
+  "Antalya",
+  "İstanbul",
+  "İzmir",
+  "Ankara",
+  "Bursa",
+  "Trabzon",
+];
 const TRANSPORTS = ["Uçak", "Otobüs", "Gemi", "Özel Araç"];
 const DURATIONS: Tour["durationBucket"][] = ["1-3", "4-7", "8-10", "10+"];
 const PERIODS = ["Yıl Boyu", "İlkbahar", "Yaz", "Sonbahar", "Kış"];
@@ -275,24 +282,32 @@ export default function Tours() {
                 <div className="mt-3">
                   <Slider
                     value={price}
-                    onValueChange={(v) => setPrice([v[0] ?? 0, v[1] ?? 0] as [number, number])}
+                    onValueChange={(v) =>
+                      setPrice([v[0] ?? 0, v[1] ?? 0] as [number, number])
+                    }
                     min={0}
                     max={100000}
                     step={100}
                     className="py-2"
                   />
                   <div className="mt-2 text-xs text-slate-600">
-                    {price[0].toLocaleString("tr-TR")} TL - {price[1].toLocaleString("tr-TR")} TL
+                    {price[0].toLocaleString("tr-TR")} TL -{" "}
+                    {price[1].toLocaleString("tr-TR")} TL
                   </div>
                 </div>
               </div>
 
               {/* Bölgelere göre Turlar */}
               <div>
-                <Label className="text-xs font-semibold">Bölgelere göre Turlar</Label>
+                <Label className="text-xs font-semibold">
+                  Bölgelere göre Turlar
+                </Label>
                 <div className="mt-3 grid grid-cols-1 gap-2">
                   {REGIONS.map((r) => (
-                    <label key={r} className="inline-flex items-center gap-2 text-sm">
+                    <label
+                      key={r}
+                      className="inline-flex items-center gap-2 text-sm"
+                    >
                       <Checkbox
                         checked={regions.includes(r)}
                         onCheckedChange={() => toggle(regions, setRegions, r)}
@@ -309,10 +324,15 @@ export default function Tours() {
                 <Label className="text-xs font-semibold">Çıkış Noktası</Label>
                 <div className="mt-3 grid grid-cols-1 gap-2">
                   {DEPARTURES.map((d) => (
-                    <label key={d} className="inline-flex items-center gap-2 text-sm">
+                    <label
+                      key={d}
+                      className="inline-flex items-center gap-2 text-sm"
+                    >
                       <Checkbox
                         checked={departures.includes(d)}
-                        onCheckedChange={() => toggle(departures, setDepartures, d)}
+                        onCheckedChange={() =>
+                          toggle(departures, setDepartures, d)
+                        }
                         aria-label={d}
                       />
                       {d}
@@ -326,10 +346,15 @@ export default function Tours() {
                 <Label className="text-xs font-semibold">Ulaşım Tipi</Label>
                 <div className="mt-3 grid grid-cols-1 gap-2">
                   {TRANSPORTS.map((t) => (
-                    <label key={t} className="inline-flex items-center gap-2 text-sm">
+                    <label
+                      key={t}
+                      className="inline-flex items-center gap-2 text-sm"
+                    >
                       <Checkbox
                         checked={transports.includes(t)}
-                        onCheckedChange={() => toggle(transports, setTransports, t)}
+                        onCheckedChange={() =>
+                          toggle(transports, setTransports, t)
+                        }
                         aria-label={t}
                       />
                       {t}
@@ -343,10 +368,15 @@ export default function Tours() {
                 <Label className="text-xs font-semibold">Tur Süresi</Label>
                 <div className="mt-3 grid grid-cols-2 gap-2">
                   {DURATIONS.map((b) => (
-                    <label key={b} className="inline-flex items-center gap-2 text-sm">
+                    <label
+                      key={b}
+                      className="inline-flex items-center gap-2 text-sm"
+                    >
                       <Checkbox
                         checked={durations.includes(b)}
-                        onCheckedChange={() => toggle(durations, setDurations as any, b)}
+                        onCheckedChange={() =>
+                          toggle(durations, setDurations as any, b)
+                        }
                         aria-label={b}
                       />
                       {b} gün
@@ -360,7 +390,10 @@ export default function Tours() {
                 <Label className="text-xs font-semibold">Tur Dönemi</Label>
                 <div className="mt-3 grid grid-cols-2 gap-2">
                   {PERIODS.map((p) => (
-                    <label key={p} className="inline-flex items-center gap-2 text-sm">
+                    <label
+                      key={p}
+                      className="inline-flex items-center gap-2 text-sm"
+                    >
                       <Checkbox
                         checked={periods.includes(p)}
                         onCheckedChange={() => toggle(periods, setPeriods, p)}
@@ -451,7 +484,8 @@ export default function Tours() {
                       </span>
                     </div>
                     <p className="mt-2 text-sm text-slate-600">
-                      Tüm gezi ve transferler dahil, rehber eşliğinde keyifli bir deneyim.
+                      Tüm gezi ve transferler dahil, rehber eşliğinde keyifli
+                      bir deneyim.
                     </p>
                   </div>
 
