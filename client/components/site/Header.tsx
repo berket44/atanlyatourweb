@@ -1,6 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import TopBanner from "@/components/site/TopBanner";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const nav = [
   { to: "/", label: "Ana Sayfa" },
@@ -12,10 +20,66 @@ const nav = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
+  const [lang, setLang] = useState("TR");
+  const [currency, setCurrency] = useState("TL");
+
+  useEffect(() => {
+    const d = localStorage.getItem("topBanner:dismissed");
+    setShowBanner(d !== "1");
+    const lsLang = localStorage.getItem("pref:lang");
+    const lsCur = localStorage.getItem("pref:currency");
+    if (lsLang) setLang(lsLang);
+    if (lsCur) setCurrency(lsCur);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("pref:lang", lang);
+  }, [lang]);
+  useEffect(() => {
+    localStorage.setItem("pref:currency", currency);
+  }, [currency]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60">
+      {showBanner && (
+        <TopBanner onClose={() => { localStorage.setItem("topBanner:dismissed", "1"); setShowBanner(false); }} />
+      )}
+
       <div className="container max-w-7xl container-px">
+        <div className="flex items-center justify-end gap-4 py-1 text-xs text-slate-600">
+          <div className="hidden sm:flex items-center gap-3 ml-auto">
+            <div className="flex items-center gap-1">
+              <span className="opacity-70">Dil:</span>
+              <Select value={lang} onValueChange={setLang}>
+                <SelectTrigger className="h-7 w-[90px] text-xs">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="TR">TR - Türkçe</SelectItem>
+                  <SelectItem value="EN">EN - English</SelectItem>
+                  <SelectItem value="DE">DE - Deutsch</SelectItem>
+                  <SelectItem value="RU">RU - Русский</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center gap-1">
+              <span className="opacity-70">Para Birimi:</span>
+              <Select value={currency} onValueChange={setCurrency}>
+                <SelectTrigger className="h-7 w-[90px] text-xs">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="TL">TL - ₺</SelectItem>
+                  <SelectItem value="USD">USD - $</SelectItem>
+                  <SelectItem value="EUR">EUR - €</SelectItem>
+                  <SelectItem value="GBP">GBP - £</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </div>
+
         <div className="flex h-16 items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link
