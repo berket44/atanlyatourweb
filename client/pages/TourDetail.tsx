@@ -90,7 +90,15 @@ export default function TourDetail() {
                 {images.map((src, i) => (
                   <CarouselItem key={src + i}>
                     <div className="relative aspect-[16/9] sm:aspect-[21/9]">
-                      <img src={src} alt={detail.title + " görsel " + (i + 1)} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+                      <Dialog>
+                        <img src={src} alt={detail.title + " görsel " + (i + 1)} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+                        <DialogTrigger asChild>
+                          <button className="absolute inset-0" aria-label="Görseli büyüt" />
+                        </DialogTrigger>
+                        <DialogContent className="max-w-5xl p-0 bg-transparent border-0 shadow-none">
+                          <img src={src} alt="Büyük görsel" className="w-full h-auto rounded-md" />
+                        </DialogContent>
+                      </Dialog>
 
                       <div className="absolute right-3 top-3 z-10">
                         <Dialog>
@@ -298,7 +306,7 @@ export default function TourDetail() {
                     <li>Gidiş-dönüş ekonomi sınıfı uçak bileti</li>
                     <li>4* otellerde oda-kahvaltı konaklama</li>
                     <li>Alan-otel transferleri ve şehir turları</li>
-                    <li>Profesyonel Türkçe rehberlik</li>
+                    <li>Profesyonel T��rkçe rehberlik</li>
                   </ul>
                 </AccordionContent>
               </AccordionItem>
