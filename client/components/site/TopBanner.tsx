@@ -72,7 +72,7 @@ export default function TopBanner({
 
 function TimeBox({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-md bg-white text-primary px-2 py-0.5 shadow-sm animate-[pulse_2s_ease-in-out_infinite]">
+    <div className="flex flex-col items-center justify-center rounded-md bg-white text-primary px-2 py-0.5 shadow-sm animate-pulse">
       <span className="leading-none text-[11px] font-bold tracking-wider">{value}</span>
       <span className="leading-none text-[9px] font-medium opacity-80">{label}</span>
     </div>
