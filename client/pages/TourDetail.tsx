@@ -31,9 +31,14 @@ const FALLBACK_IMAGES = [
   "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop",
 ];
 
-const DETAILS: Record<string, { title: string; images: string[]; video?: string; base: number }> = {
+const DETAILS: Record<string, { title: string; images: string[]; video?: string; base: number; code: string; departures: string[]; capacity: number; departureTimes: string; days: string }> = {
   moskova: {
     title: "Prime Moskova Turu (Pegasus ile Tüm Geziler Dahil)",
+    code: "1919",
+    departures: ["İstanbul SAW", "İstanbul IST"],
+    capacity: 45,
+    departureTimes: "06:45, 12:30",
+    days: "Pazartesi - Çarşamba - Cuma",
     images: [
       "https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=1600&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1600&auto=format&fit=crop",
@@ -44,6 +49,11 @@ const DETAILS: Record<string, { title: string; images: string[]; video?: string;
   },
   stpetersburg: {
     title: "Prime St. Petersburg Turu (Pegasus ile Tüm Geziler Dahil)",
+    code: "1920",
+    departures: ["İstanbul SAW"],
+    capacity: 42,
+    departureTimes: "07:30, 13:15",
+    days: "Salı - Perşembe - Cumartesi",
     images: [
       "https://images.unsplash.com/photo-1564669890849-114ba0f019f5?q=80&w=1600&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?q=80&w=1600&auto=format&fit=crop",
@@ -53,6 +63,11 @@ const DETAILS: Record<string, { title: string; images: string[]; video?: string;
   },
   sharm: {
     title: "Prime Ankara Hareketli Sharm El Sheikh Turu",
+    code: "1101",
+    departures: ["Ankara ESB"],
+    capacity: 40,
+    departureTimes: "09:10",
+    days: "Haftanın belirli günleri",
     images: [
       "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1600&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1558980394-0c0ad3f6a0b5?q=80&w=1600&auto=format&fit=crop",
@@ -70,13 +85,18 @@ const DATE_OPTIONS = [
 
 export default function TourDetail() {
   const { id = "moskova" } = useParams();
-  const detail = DETAILS[id] || { title: "Tur Detayı", images: FALLBACK_IMAGES, base: 29900 };
+  const detail = DETAILS[id] || { title: "Tur Detayı", images: FALLBACK_IMAGES, base: 29900, code: "0000", departures: ["Belirsiz"], capacity: 0, departureTimes: "-", days: "-" };
   const images = detail.images.length ? detail.images : FALLBACK_IMAGES;
 
   const [selected, setSelected] = useState<string>(DATE_OPTIONS[0].id);
   const [adults, setAdults] = useState<number>(2);
+  const [children, setChildren] = useState<number>(0);
+  const [infants, setInfants] = useState<number>(0);
   const selectedOption = useMemo(() => DATE_OPTIONS.find((d) => d.id === selected)!, [selected]);
-  const total = adults * (selectedOption?.price ?? detail.base);
+  const adultPrice = selectedOption?.price ?? detail.base;
+  const childUnit = Math.round(adultPrice * 0.5);
+  const infantUnit = Math.round(adultPrice * 0.1);
+  const total = adults * adultPrice + children * childUnit + infants * infantUnit;
   const [rating, setRating] = useState<number>(0);
 
   return (
@@ -242,10 +262,21 @@ export default function TourDetail() {
         {/* Sidebar */}
         <aside className="lg:col-span-4">
           <div className="rounded-2xl border bg-white p-4 sm:p-6 shadow-sm sticky top-24">
-            <div className="flex items-end justify-between gap-3">
+            <div>
+              <h2 className="text-[10pt] font-semibold leading-snug">{detail.title}</h2>
+              <div className="mt-2 grid grid-cols-1 gap-1 text-xs text-slate-700">
+                <div><span className="opacity-70">Tur Kodu:</span> <span className="ml-1 font-mono font-extrabold tracking-wide text-slate-900">{detail.code}</span></div>
+                <div><span className="opacity-70">Kalkış Bölgeleri:</span> <span className="ml-1">{detail.departures.join(", ")}</span></div>
+                <div><span className="opacity-70">Kapasite:</span> <span className="ml-1">{detail.capacity} kişi</span></div>
+                <div><span className="opacity-70">Kalkış Saatleri:</span> <span className="ml-1">{detail.departureTimes}</span></div>
+                <div><span className="opacity-70">Günler:</span> <span className="ml-1">{detail.days}</span></div>
+              </div>
+            </div>
+
+            <div className="mt-3 flex items-end justify-between gap-3">
               <div>
-                <div className="text-xs text-slate-500">Kişi Başı</div>
-                <div className="text-2xl font-extrabold text-primary">{(selectedOption?.price ?? detail.base).toLocaleString("tr-TR")} TL</div>
+                <div className="text-xs text-slate-500">Yetişkin Fiyatı</div>
+                <div className="text-2xl font-extrabold text-primary">{adultPrice.toLocaleString("tr-TR")} TL</div>
               </div>
               <div className="text-right">
                 <div className="text-xs text-slate-500">Toplam</div>
@@ -261,11 +292,39 @@ export default function TourDetail() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {[1,2,3,4,5,6].map((n) => (
+                    {[0,1,2,3,4,5,6].map((n) => (
                       <SelectItem key={n} value={String(n)}>{n}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+              </div>
+              <div>
+                <Label className="text-xs">Çocuk</Label>
+                <Select value={String(children)} onValueChange={(v) => setChildren(Number(v))}>
+                  <SelectTrigger className="h-10">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {[0,1,2,3,4,5,6].map((n) => (
+                      <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <div className="mt-1 text-[11px] text-slate-500">Çocuk kişi başı: {childUnit.toLocaleString("tr-TR")} TL</div>
+              </div>
+              <div>
+                <Label className="text-xs">Bebek</Label>
+                <Select value={String(infants)} onValueChange={(v) => setInfants(Number(v))}>
+                  <SelectTrigger className="h-10">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {[0,1,2,3].map((n) => (
+                      <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <div className="mt-1 text-[11px] text-slate-500">Bebek kişi başı: {infantUnit.toLocaleString("tr-TR")} TL</div>
               </div>
               <div>
                 <Label className="text-xs">Tarih</Label>
@@ -280,6 +339,12 @@ export default function TourDetail() {
                   </SelectContent>
                 </Select>
               </div>
+            </div>
+
+            <div className="mt-2 text-xs text-slate-600">
+              <div className="flex justify-between"><span>Yetişkin x {adults}</span><span>{(adults*adultPrice).toLocaleString("tr-TR")} TL</span></div>
+              <div className="flex justify-between"><span>Çocuk x {children}</span><span>{(children*childUnit).toLocaleString("tr-TR")} TL</span></div>
+              <div className="flex justify-between"><span>Bebek x {infants}</span><span>{(infants*infantUnit).toLocaleString("tr-TR")} TL</span></div>
             </div>
 
             <div className="mt-3">
@@ -308,7 +373,7 @@ export default function TourDetail() {
                     <li>Gidiş-dönüş ekonomi sınıfı uçak bileti</li>
                     <li>4* otellerde oda-kahvaltı konaklama</li>
                     <li>Alan-otel transferleri ve şehir turları</li>
-                    <li>Profesyonel T��rkçe rehberlik</li>
+                    <li>Profesyonel Türkçe rehberlik</li>
                   </ul>
                 </AccordionContent>
               </AccordionItem>
