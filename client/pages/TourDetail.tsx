@@ -17,8 +17,19 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
@@ -31,7 +42,20 @@ const FALLBACK_IMAGES = [
   "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop",
 ];
 
-const DETAILS: Record<string, { title: string; images: string[]; video?: string; base: number; code: string; departures: string[]; capacity: number; departureTimes: string; days: string }> = {
+const DETAILS: Record<
+  string,
+  {
+    title: string;
+    images: string[];
+    video?: string;
+    base: number;
+    code: string;
+    departures: string[];
+    capacity: number;
+    departureTimes: string;
+    days: string;
+  }
+> = {
   moskova: {
     title: "Prime Moskova Turu (Pegasus ile Tüm Geziler Dahil)",
     code: "1919",
@@ -85,18 +109,31 @@ const DATE_OPTIONS = [
 
 export default function TourDetail() {
   const { id = "moskova" } = useParams();
-  const detail = DETAILS[id] || { title: "Tur Detayı", images: FALLBACK_IMAGES, base: 29900, code: "0000", departures: ["Belirsiz"], capacity: 0, departureTimes: "-", days: "-" };
+  const detail = DETAILS[id] || {
+    title: "Tur Detayı",
+    images: FALLBACK_IMAGES,
+    base: 29900,
+    code: "0000",
+    departures: ["Belirsiz"],
+    capacity: 0,
+    departureTimes: "-",
+    days: "-",
+  };
   const images = detail.images.length ? detail.images : FALLBACK_IMAGES;
 
   const [selected, setSelected] = useState<string>(DATE_OPTIONS[0].id);
   const [adults, setAdults] = useState<number>(2);
   const [children, setChildren] = useState<number>(0);
   const [infants, setInfants] = useState<number>(0);
-  const selectedOption = useMemo(() => DATE_OPTIONS.find((d) => d.id === selected)!, [selected]);
+  const selectedOption = useMemo(
+    () => DATE_OPTIONS.find((d) => d.id === selected)!,
+    [selected],
+  );
   const adultPrice = selectedOption?.price ?? detail.base;
   const childUnit = Math.round(adultPrice * 0.5);
   const infantUnit = Math.round(adultPrice * 0.1);
-  const total = adults * adultPrice + children * childUnit + infants * infantUnit;
+  const total =
+    adults * adultPrice + children * childUnit + infants * infantUnit;
   const [rating, setRating] = useState<number>(0);
 
   return (
@@ -111,27 +148,51 @@ export default function TourDetail() {
                   <CarouselItem key={src + i}>
                     <div className="relative aspect-[16/9] sm:aspect-[21/9]">
                       <Dialog>
-                        <img src={src} alt={detail.title + " görsel " + (i + 1)} className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+                        <img
+                          src={src}
+                          alt={detail.title + " görsel " + (i + 1)}
+                          className="absolute inset-0 h-full w-full object-cover"
+                          loading="lazy"
+                        />
                         <DialogTrigger asChild>
-                          <button className="absolute inset-0" aria-label="Görseli büyüt" />
+                          <button
+                            className="absolute inset-0"
+                            aria-label="Görseli büyüt"
+                          />
                         </DialogTrigger>
                         <DialogContent className="max-w-5xl p-0 bg-transparent border-0 shadow-none">
-                          <DialogTitle className="sr-only">Görsel Önizleme</DialogTitle>
-                          <img src={src} alt="Büyük görsel" className="w-full h-auto rounded-md" />
+                          <DialogTitle className="sr-only">
+                            Görsel Önizleme
+                          </DialogTitle>
+                          <img
+                            src={src}
+                            alt="Büyük görsel"
+                            className="w-full h-auto rounded-md"
+                          />
                         </DialogContent>
                       </Dialog>
 
                       <div className="absolute right-3 top-3 z-10">
                         <Dialog>
                           <DialogTrigger asChild>
-                            <Button size="icon" className="h-8 w-8 rounded-full bg-white/90 text-slate-900 hover:bg-white" aria-label="Büyüt">
+                            <Button
+                              size="icon"
+                              className="h-8 w-8 rounded-full bg-white/90 text-slate-900 hover:bg-white"
+                              aria-label="Büyüt"
+                            >
                               <Maximize2 className="h-4 w-4" />
                             </Button>
                           </DialogTrigger>
                           <DialogContent className="max-w-5xl p-0 bg-transparent border-0 shadow-none">
-                          <DialogTitle className="sr-only">Görsel Önizleme</DialogTitle>
-                          <img src={src} alt="Büyük görsel" className="w-full h-auto rounded-md" />
-                        </DialogContent>
+                            <DialogTitle className="sr-only">
+                              Görsel Önizleme
+                            </DialogTitle>
+                            <img
+                              src={src}
+                              alt="Büyük görsel"
+                              className="w-full h-auto rounded-md"
+                            />
+                          </DialogContent>
                         </Dialog>
                       </div>
                     </div>
@@ -145,7 +206,9 @@ export default function TourDetail() {
 
           {/* Title row */}
           <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900">{detail.title}</h1>
+            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900">
+              {detail.title}
+            </h1>
             <div className="flex items-center gap-2">
               {detail.video && (
                 <Dialog>
@@ -159,7 +222,10 @@ export default function TourDetail() {
                     <DialogDescription>
                       Tur hakkında kısa video.
                     </DialogDescription>
-                    <div className="relative w-full overflow-hidden rounded-md" style={{paddingTop: "56.25%"}}>
+                    <div
+                      className="relative w-full overflow-hidden rounded-md"
+                      style={{ paddingTop: "56.25%" }}
+                    >
                       <iframe
                         src={detail.video}
                         title="Tur Videosu"
@@ -171,7 +237,9 @@ export default function TourDetail() {
                   </DialogContent>
                 </Dialog>
               )}
-              <Button variant="outline" className="h-10"><ExternalLink className="h-4 w-4 mr-2" /> Paylaş</Button>
+              <Button variant="outline" className="h-10">
+                <ExternalLink className="h-4 w-4 mr-2" /> Paylaş
+              </Button>
             </div>
           </div>
 
@@ -186,27 +254,72 @@ export default function TourDetail() {
                 <TabsTrigger value="kampanya">Kampanyalar</TabsTrigger>
               </TabsList>
               <TabsContent value="program" className="mt-4 space-y-4">
-                <DayItem day={1} title="İlk Gün - Varış ve Şehir Turu" text="Uçuş sonrası otele yerleşme, panoramik şehir turu ve akşam serbest zaman." />
-                <DayItem day={2} title="Müze ve Tarihi Bölgeler" text="Rehber eşliğinde önemli müzeler ve tarihi bölgelerin ziyareti." />
-                <DayItem day={3} title="Serbest Zaman ve Alışveriş" text="Kişisel keşifler ve alışveriş için serbest zaman." />
-                <DayItem day={4} title="Dönüş" text="Havaalanı transferi ve dönüş uçuşu." />
+                <DayItem
+                  day={1}
+                  title="İlk Gün - Varış ve Şehir Turu"
+                  text="Uçuş sonrası otele yerleşme, panoramik şehir turu ve akşam serbest zaman."
+                />
+                <DayItem
+                  day={2}
+                  title="Müze ve Tarihi Bölgeler"
+                  text="Rehber eşliğinde önemli müzeler ve tarihi bölgelerin ziyareti."
+                />
+                <DayItem
+                  day={3}
+                  title="Serbest Zaman ve Alışveriş"
+                  text="Kişisel keşifler ve alışveriş için serbest zaman."
+                />
+                <DayItem
+                  day={4}
+                  title="Dönüş"
+                  text="Havaalanı transferi ve dönüş uçuşu."
+                />
               </TabsContent>
-              <TabsContent value="kosullar" className="mt-4 text-sm text-slate-700 space-y-3">
-                <p>Tur ücreti; belirtilen uçak bileti, otel konaklaması, kahvaltılar ve programdaki gezileri kapsar.</p>
+              <TabsContent
+                value="kosullar"
+                className="mt-4 text-sm text-slate-700 space-y-3"
+              >
+                <p>
+                  Tur ücreti; belirtilen uçak bileti, otel konaklaması,
+                  kahvaltılar ve programdaki gezileri kapsar.
+                </p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>Pasaport ve vize işlemleri misafire aittir.</li>
-                  <li>Programda belirtilmeyen ekstra harcamalar dahil değildir.</li>
-                  <li>Rehber; program akışını hava/operasyon koşullarına göre değiştirebilir.</li>
+                  <li>
+                    Programda belirtilmeyen ekstra harcamalar dahil değildir.
+                  </li>
+                  <li>
+                    Rehber; program akışını hava/operasyon koşullarına göre
+                    değiştirebilir.
+                  </li>
                 </ul>
               </TabsContent>
-              <TabsContent value="konaklama" className="mt-4 text-sm text-slate-700 space-y-3">
-                <p>4* merkezî konumlu otellerde oda-kahvaltı konaklama sağlanır. Odalarda Wi‑Fi, kasa ve klima mevcuttur.</p>
+              <TabsContent
+                value="konaklama"
+                className="mt-4 text-sm text-slate-700 space-y-3"
+              >
+                <p>
+                  4* merkezî konumlu otellerde oda-kahvaltı konaklama sağlanır.
+                  Odalarda Wi‑Fi, kasa ve klima mevcuttur.
+                </p>
               </TabsContent>
-              <TabsContent value="vize" className="mt-4 text-sm text-slate-700 space-y-3">
-                <p>Vize gereksinimleri ülkeye göre değişir. Lütfen pasaportunuzun en az 6 ay geçerliliği olduğundan emin olun.</p>
+              <TabsContent
+                value="vize"
+                className="mt-4 text-sm text-slate-700 space-y-3"
+              >
+                <p>
+                  Vize gereksinimleri ülkeye göre değişir. Lütfen pasaportunuzun
+                  en az 6 ay geçerliliği olduğundan emin olun.
+                </p>
               </TabsContent>
-              <TabsContent value="kampanya" className="mt-4 text-sm text-slate-700 space-y-3">
-                <p>Erken rezervasyonda ek indirim ve taksit avantajları uygulanır. Kampanyalar stoklarla sınırlıdır.</p>
+              <TabsContent
+                value="kampanya"
+                className="mt-4 text-sm text-slate-700 space-y-3"
+              >
+                <p>
+                  Erken rezervasyonda ek indirim ve taksit avantajları
+                  uygulanır. Kampanyalar stoklarla sınırlıdır.
+                </p>
               </TabsContent>
             </Tabs>
           </div>
@@ -218,10 +331,20 @@ export default function TourDetail() {
               <div className="rounded-md border p-3">
                 <div className="flex items-center gap-2">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={"h-4 w-4 " + (i < 4 ? "text-yellow-500 fill-yellow-500" : "text-slate-300")} />
+                    <Star
+                      key={i}
+                      className={
+                        "h-4 w-4 " +
+                        (i < 4
+                          ? "text-yellow-500 fill-yellow-500"
+                          : "text-slate-300")
+                      }
+                    />
                   ))}
                 </div>
-                <p className="mt-2 text-sm text-slate-700">Rehber çok ilgiliydi, program dengeliydi. Tavsiye ederim.</p>
+                <p className="mt-2 text-sm text-slate-700">
+                  Rehber çok ilgiliydi, program dengeliydi. Tavsiye ederim.
+                </p>
                 <div className="mt-1 text-xs text-slate-500">Ayşe K.</div>
               </div>
 
@@ -241,8 +364,20 @@ export default function TourDetail() {
                   <Label className="text-xs">Puanlama</Label>
                   <div className="mt-1 flex items-center gap-1">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <button key={i} type="button" onClick={() => setRating(i + 1)} aria-label={`${i + 1} yıldız`}>
-                        <Star className={"h-6 w-6 " + (i < rating ? "text-yellow-500 fill-yellow-500" : "text-slate-300")} />
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setRating(i + 1)}
+                        aria-label={`${i + 1} yıldız`}
+                      >
+                        <Star
+                          className={
+                            "h-6 w-6 " +
+                            (i < rating
+                              ? "text-yellow-500 fill-yellow-500"
+                              : "text-slate-300")
+                          }
+                        />
                       </button>
                     ))}
                   </div>
@@ -263,68 +398,110 @@ export default function TourDetail() {
         <aside className="lg:col-span-4">
           <div className="rounded-2xl border bg-white p-4 sm:p-6 shadow-sm sticky top-24">
             <div>
-              <h2 className="text-[10pt] font-semibold leading-snug">{detail.title}</h2>
+              <h2 className="text-[10pt] font-semibold leading-snug">
+                {detail.title}
+              </h2>
               <div className="mt-2 grid grid-cols-1 gap-1 text-xs text-slate-700">
-                <div><span className="opacity-70">Tur Kodu:</span> <span className="ml-1 font-mono font-extrabold tracking-wide text-slate-900">{detail.code}</span></div>
-                <div><span className="opacity-70">Kalkış Bölgeleri:</span> <span className="ml-1">{detail.departures.join(", ")}</span></div>
-                <div><span className="opacity-70">Kapasite:</span> <span className="ml-1">{detail.capacity} kişi</span></div>
-                <div><span className="opacity-70">Kalkış Saatleri:</span> <span className="ml-1">{detail.departureTimes}</span></div>
-                <div><span className="opacity-70">Günler:</span> <span className="ml-1">{detail.days}</span></div>
+                <div>
+                  <span className="opacity-70">Tur Kodu:</span>{" "}
+                  <span className="ml-1 font-mono font-extrabold tracking-wide text-slate-900">
+                    {detail.code}
+                  </span>
+                </div>
+                <div>
+                  <span className="opacity-70">Kalkış Bölgeleri:</span>{" "}
+                  <span className="ml-1">{detail.departures.join(", ")}</span>
+                </div>
+                <div>
+                  <span className="opacity-70">Kapasite:</span>{" "}
+                  <span className="ml-1">{detail.capacity} kişi</span>
+                </div>
+                <div>
+                  <span className="opacity-70">Kalkış Saatleri:</span>{" "}
+                  <span className="ml-1">{detail.departureTimes}</span>
+                </div>
+                <div>
+                  <span className="opacity-70">Günler:</span>{" "}
+                  <span className="ml-1">{detail.days}</span>
+                </div>
               </div>
             </div>
 
             <div className="mt-3 flex items-end justify-between gap-3">
               <div>
                 <div className="text-xs text-slate-500">Yetişkin Fiyatı</div>
-                <div className="text-2xl font-extrabold text-primary">{adultPrice.toLocaleString("tr-TR")} TL</div>
+                <div className="text-2xl font-extrabold text-primary">
+                  {adultPrice.toLocaleString("tr-TR")} TL
+                </div>
               </div>
               <div className="text-right">
                 <div className="text-xs text-slate-500">Toplam</div>
-                <div className="text-xl font-extrabold">{total.toLocaleString("tr-TR")} TL</div>
+                <div className="text-xl font-extrabold">
+                  {total.toLocaleString("tr-TR")} TL
+                </div>
               </div>
             </div>
 
             <div className="mt-4 grid grid-cols-1 gap-3">
               <div>
                 <Label className="text-xs">Yetişkin</Label>
-                <Select value={String(adults)} onValueChange={(v) => setAdults(Number(v))}>
+                <Select
+                  value={String(adults)}
+                  onValueChange={(v) => setAdults(Number(v))}
+                >
                   <SelectTrigger className="h-10">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {[0,1,2,3,4,5,6].map((n) => (
-                      <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+                    {[0, 1, 2, 3, 4, 5, 6].map((n) => (
+                      <SelectItem key={n} value={String(n)}>
+                        {n}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
               <div>
                 <Label className="text-xs">Çocuk</Label>
-                <Select value={String(children)} onValueChange={(v) => setChildren(Number(v))}>
+                <Select
+                  value={String(children)}
+                  onValueChange={(v) => setChildren(Number(v))}
+                >
                   <SelectTrigger className="h-10">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {[0,1,2,3,4,5,6].map((n) => (
-                      <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+                    {[0, 1, 2, 3, 4, 5, 6].map((n) => (
+                      <SelectItem key={n} value={String(n)}>
+                        {n}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                <div className="mt-1 text-[11px] text-slate-500">Çocuk kişi başı: {childUnit.toLocaleString("tr-TR")} TL</div>
+                <div className="mt-1 text-[11px] text-slate-500">
+                  Çocuk kişi başı: {childUnit.toLocaleString("tr-TR")} TL
+                </div>
               </div>
               <div>
                 <Label className="text-xs">Bebek</Label>
-                <Select value={String(infants)} onValueChange={(v) => setInfants(Number(v))}>
+                <Select
+                  value={String(infants)}
+                  onValueChange={(v) => setInfants(Number(v))}
+                >
                   <SelectTrigger className="h-10">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {[0,1,2,3].map((n) => (
-                      <SelectItem key={n} value={String(n)}>{n}</SelectItem>
+                    {[0, 1, 2, 3].map((n) => (
+                      <SelectItem key={n} value={String(n)}>
+                        {n}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
-                <div className="mt-1 text-[11px] text-slate-500">Bebek kişi başı: {infantUnit.toLocaleString("tr-TR")} TL</div>
+                <div className="mt-1 text-[11px] text-slate-500">
+                  Bebek kişi başı: {infantUnit.toLocaleString("tr-TR")} TL
+                </div>
               </div>
               <div>
                 <Label className="text-xs">Tarih</Label>
@@ -334,7 +511,9 @@ export default function TourDetail() {
                   </SelectTrigger>
                   <SelectContent>
                     {DATE_OPTIONS.map((d) => (
-                      <SelectItem key={d.id} value={d.id}>{d.label} — {d.price.toLocaleString("tr-TR")} TL</SelectItem>
+                      <SelectItem key={d.id} value={d.id}>
+                        {d.label} — {d.price.toLocaleString("tr-TR")} TL
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -342,18 +521,33 @@ export default function TourDetail() {
             </div>
 
             <div className="mt-2 text-xs text-slate-600">
-              <div className="flex justify-between"><span>Yetişkin x {adults}</span><span>{(adults*adultPrice).toLocaleString("tr-TR")} TL</span></div>
-              <div className="flex justify-between"><span>Çocuk x {children}</span><span>{(children*childUnit).toLocaleString("tr-TR")} TL</span></div>
-              <div className="flex justify-between"><span>Bebek x {infants}</span><span>{(infants*infantUnit).toLocaleString("tr-TR")} TL</span></div>
+              <div className="flex justify-between">
+                <span>Yetişkin x {adults}</span>
+                <span>{(adults * adultPrice).toLocaleString("tr-TR")} TL</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Çocuk x {children}</span>
+                <span>{(children * childUnit).toLocaleString("tr-TR")} TL</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Bebek x {infants}</span>
+                <span>{(infants * infantUnit).toLocaleString("tr-TR")} TL</span>
+              </div>
             </div>
 
             <div className="mt-3">
               <Label className="text-xs">Alternatif Tarih Seçenekleri</Label>
               <div className="mt-2 grid grid-cols-1 gap-2">
                 {DATE_OPTIONS.filter((d) => d.id !== selected).map((d) => (
-                  <button key={d.id} className="w-full rounded-md border px-3 py-2 text-left text-sm hover:bg-slate-50" onClick={() => setSelected(d.id)}>
+                  <button
+                    key={d.id}
+                    className="w-full rounded-md border px-3 py-2 text-left text-sm hover:bg-slate-50"
+                    onClick={() => setSelected(d.id)}
+                  >
                     <div className="font-medium">{d.label}</div>
-                    <div className="text-xs text-slate-600">{d.price.toLocaleString("tr-TR")} TL</div>
+                    <div className="text-xs text-slate-600">
+                      {d.price.toLocaleString("tr-TR")} TL
+                    </div>
                   </button>
                 ))}
               </div>
@@ -378,7 +572,9 @@ export default function TourDetail() {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="haric">
-                <AccordionTrigger>Fiyata Dahil Olmayan Hizmetler</AccordionTrigger>
+                <AccordionTrigger>
+                  Fiyata Dahil Olmayan Hizmetler
+                </AccordionTrigger>
                 <AccordionContent>
                   <ul className="list-disc pl-5 space-y-1 text-sm text-slate-700">
                     <li>Vize ücreti ve seyahat sağlık sigortası</li>
@@ -395,7 +591,15 @@ export default function TourDetail() {
   );
 }
 
-function DayItem({ day, title, text }: { day: number; title: string; text: string }) {
+function DayItem({
+  day,
+  title,
+  text,
+}: {
+  day: number;
+  title: string;
+  text: string;
+}) {
   return (
     <div className="rounded-md border p-4">
       <div className="text-xs text-slate-500">{day}. GÜN</div>

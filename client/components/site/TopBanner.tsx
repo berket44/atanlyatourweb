@@ -53,7 +53,11 @@ export default function TopBanner({
           </div>
 
           <div className="ml-auto flex items-center gap-2">
-            <Button asChild size="sm" className="h-8 px-3 bg-white text-primary hover:opacity-90">
+            <Button
+              asChild
+              size="sm"
+              className="h-8 px-3 bg-white text-primary hover:opacity-90"
+            >
               <a href="/tours">Otelleri İncele</a>
             </Button>
             <button
@@ -73,8 +77,12 @@ export default function TopBanner({
 function TimeBox({ value, label }: { value: string; label: string }) {
   return (
     <div className="flex flex-col items-center justify-center rounded-md bg-white text-primary px-2 py-0.5 shadow-sm animate-pulse">
-      <span className="leading-none text-[11px] font-bold tracking-wider">{value}</span>
-      <span className="leading-none text-[9px] font-medium opacity-80">{label}</span>
+      <span className="leading-none text-[11px] font-bold tracking-wider">
+        {value}
+      </span>
+      <span className="leading-none text-[9px] font-medium opacity-80">
+        {label}
+      </span>
     </div>
   );
 }

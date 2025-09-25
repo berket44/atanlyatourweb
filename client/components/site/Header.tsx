@@ -43,7 +43,12 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md supports-[backdrop-filter]:bg-white/60">
       {showBanner && (
-        <TopBanner onClose={() => { localStorage.setItem("topBanner:dismissed", "1"); setShowBanner(false); }} />
+        <TopBanner
+          onClose={() => {
+            localStorage.setItem("topBanner:dismissed", "1");
+            setShowBanner(false);
+          }}
+        />
       )}
 
       <div className="container max-w-7xl container-px">

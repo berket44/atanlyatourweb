@@ -497,7 +497,10 @@ export default function Tours() {
                         {t.price.toLocaleString("tr-TR")} TL
                       </div>
                     </div>
-                    <Link className="btn btn-accent h-10 w-full sm:w-auto px-4" to={`/tours/${t.id}`}>
+                    <Link
+                      className="btn btn-accent h-10 w-full sm:w-auto px-4"
+                      to={`/tours/${t.id}`}
+                    >
                       Tur İncele
                     </Link>
                   </div>
