@@ -13,6 +13,7 @@ import Destinations from "./pages/Destinations";
 import Tours from "./pages/Tours";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import TourDetail from "./pages/TourDetail";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/destinations" element={<Destinations />} />
             <Route path="/tours" element={<Tours />} />
+            <Route path="/tours/:id" element={<TourDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Route>

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -496,9 +497,12 @@ export default function Tours() {
                         {t.price.toLocaleString("tr-TR")} TL
                       </div>
                     </div>
-                    <button className="btn btn-accent h-10 w-full sm:w-auto px-4">
+                    <Link
+                      className="btn btn-accent h-10 w-full sm:w-auto px-4"
+                      to={`/tours/${t.id}`}
+                    >
                       Tur İncele
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </article>
