@@ -96,6 +96,7 @@ export default function TourDetail() {
                           <button className="absolute inset-0" aria-label="Görseli büyüt" />
                         </DialogTrigger>
                         <DialogContent className="max-w-5xl p-0 bg-transparent border-0 shadow-none">
+                          <DialogTitle className="sr-only">Görsel Önizleme</DialogTitle>
                           <img src={src} alt="Büyük görsel" className="w-full h-auto rounded-md" />
                         </DialogContent>
                       </Dialog>
@@ -108,8 +109,9 @@ export default function TourDetail() {
                             </Button>
                           </DialogTrigger>
                           <DialogContent className="max-w-5xl p-0 bg-transparent border-0 shadow-none">
-                            <img src={src} alt="Büyük görsel" className="w-full h-auto rounded-md" />
-                          </DialogContent>
+                          <DialogTitle className="sr-only">Görsel Önizleme</DialogTitle>
+                          <img src={src} alt="Büyük görsel" className="w-full h-auto rounded-md" />
+                        </DialogContent>
                         </Dialog>
                       </div>
                     </div>
