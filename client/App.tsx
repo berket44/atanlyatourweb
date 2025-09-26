@@ -14,6 +14,7 @@ import Tours from "./pages/Tours";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import TourDetail from "./pages/TourDetail";
+import TransferResults from "./pages/TransferResults";
 
 const queryClient = new QueryClient();
 
