@@ -4,6 +4,20 @@ import { FormEvent, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
+  const navigate = useNavigate();
+  const fromRef = useRef<HTMLInputElement>(null);
+  const toRef = useRef<HTMLInputElement>(null);
+  const dateRef = useRef<HTMLInputElement>(null);
+  const timeRef = useRef<HTMLInputElement>(null);
+  const onTransferSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const from = fromRef.current?.value?.trim() || "";
+    const to = toRef.current?.value?.trim() || "";
+    if (!from || !to) return;
+    const date = dateRef.current?.value || new Date().toISOString().slice(0, 10);
+    const time = timeRef.current?.value || "12:00";
+    navigate(`/transfer-sonuclar?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}&time=${time}&rt=0`);
+  };
   return (
     <div id="search" className="-mt-10 relative z-10">
       <div className="container max-w-6xl container-px">
