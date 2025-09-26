@@ -13,60 +13,7 @@
   <body>
     <div id="root"></div>
 
-    <script>
-      (function() {
-        try {
-          const origFetch = window.fetch;
-          if (!origFetch) return;
-          // Wrap fetch so that transient failures for same-origin requests (eg. injected scripts
-          // that proxy or monkey-patch fetch) fall back to an XHR implementation instead of
-          // permanently failing critical dev/client pings.
-          window.fetch = async function(resource, init) {
-            try {
-              return await origFetch.call(this, resource, init);
-            } catch (err) {
-              try {
-                const url = typeof resource === 'string' ? resource : resource?.url;
-                const isSameOrigin = typeof url === 'string' && (url.startsWith('/') || url.indexOf(window.location.origin) === 0);
-                if (!isSameOrigin) throw err;
-                return await new Promise((resolve, reject) => {
-                  const xhr = new XMLHttpRequest();
-                  xhr.open((init && init.method) || 'GET', url, true);
-                  const headers = (init && init.headers) || {};
-                  try {
-                    Object.keys(headers).forEach((k) => xhr.setRequestHeader(k, headers[k]));
-                  } catch (e) {
-                    // ignore header set errors
-                  }
-                  xhr.onreadystatechange = function() {
-                    if (xhr.readyState !== 4) return;
-                    const body = xhr.responseText;
-                    const response = {
-                      ok: xhr.status >= 200 && xhr.status < 300,
-                      status: xhr.status,
-                      statusText: xhr.statusText,
-                      url: url,
-                      text: () => Promise.resolve(body),
-                      json: () => Promise.resolve(JSON.parse(body)),
-                      headers: new Headers(),
-                    };
-                    resolve(response);
-                  };
-                  xhr.onerror = function() {
-                    reject(new TypeError('Network request failed'));
-                  };
-                  xhr.send((init && init.body) || null);
-                });
-              } catch (fallbackErr) {
-                throw err;
-              }
-            }
-          };
-        } catch (e) {
-          // swallow - do not break page initialization
-        }
-      })();
-    </script>
+    <div id="root"></div>
 
     <script type="module" src="/client/App.tsx"></script>
   </body>
