@@ -32,6 +32,7 @@ const App = () => (
             <Route path="/tours/:id" element={<TourDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/transfer-sonuclar" element={<TransferResults />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
