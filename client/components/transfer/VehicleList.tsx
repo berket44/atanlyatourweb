@@ -44,7 +44,11 @@ export const vehiclesCatalog: Vehicle[] = [
   },
 ];
 
-export function computeVehiclePrice(v: Vehicle, distanceKm: number, roundTrip: boolean) {
+export function computeVehiclePrice(
+  v: Vehicle,
+  distanceKm: number,
+  roundTrip: boolean,
+) {
   const oneWay = v.basePrice + v.perKm * Math.max(0, distanceKm);
   return roundTrip ? Math.round(oneWay * 2 * 0.95) : Math.round(oneWay); // %5 gidiş-dönüş indirimi
 }
@@ -55,33 +59,60 @@ interface Props {
   onSelect: (vehicle: Vehicle, price: number) => void;
 }
 
-export default function VehicleList({ distanceKm, roundTrip, onSelect }: Props) {
+export default function VehicleList({
+  distanceKm,
+  roundTrip,
+  onSelect,
+}: Props) {
   const items = useMemo(() => vehiclesCatalog, []);
   return (
     <div className="space-y-4">
       {items.map((v) => {
         const price = computeVehiclePrice(v, distanceKm, roundTrip);
         return (
-          <div key={v.id} className="grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-4 p-3 border rounded-md bg-white">
+          <div
+            key={v.id}
+            className="grid grid-cols-1 md:grid-cols-[220px_1fr_220px] gap-4 p-3 border rounded-md bg-white"
+          >
             <div className="aspect-video md:aspect-square overflow-hidden rounded-md border bg-slate-50">
-              <img src={v.image} alt={v.title} className="h-full w-full object-cover" loading="lazy" />
+              <img
+                src={v.image}
+                alt={v.title}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
             </div>
             <div className="space-y-2">
-              <div className="font-semibold text-base md:text-lg">{v.title}</div>
-              <div className="text-sm text-slate-600">Kapasite: {v.capacity.adult} kişi • {v.capacity.baggage} bagaj</div>
+              <div className="font-semibold text-base md:text-lg">
+                {v.title}
+              </div>
+              <div className="text-sm text-slate-600">
+                Kapasite: {v.capacity.adult} kişi • {v.capacity.baggage} bagaj
+              </div>
               <ul className="flex flex-wrap gap-2 text-xs text-slate-600">
                 {v.features.map((f) => (
-                  <li key={f} className="px-2 py-1 rounded bg-slate-100">{f}</li>
+                  <li key={f} className="px-2 py-1 rounded bg-slate-100">
+                    {f}
+                  </li>
                 ))}
               </ul>
             </div>
             <div className="flex md:flex-col justify-between md:justify-center items-center gap-3">
               <div className="text-right">
                 <div className="text-xs text-slate-500">Toplam</div>
-                <div className="text-xl font-bold text-primary">{price.toLocaleString('tr-TR')} TL</div>
-                <div className="text-[11px] text-slate-500">{roundTrip ? 'Gidiş + Dönüş' : 'Tek Yön'}</div>
+                <div className="text-xl font-bold text-primary">
+                  {price.toLocaleString("tr-TR")} TL
+                </div>
+                <div className="text-[11px] text-slate-500">
+                  {roundTrip ? "Gidiş + Dönüş" : "Tek Yön"}
+                </div>
               </div>
-              <Button className="btn btn-primary h-10 w-full md:w-auto" onClick={() => onSelect(v, price)}>Araç Seç</Button>
+              <Button
+                className="btn btn-primary h-10 w-full md:w-auto"
+                onClick={() => onSelect(v, price)}
+              >
+                Araç Seç
+              </Button>
             </div>
           </div>
         );

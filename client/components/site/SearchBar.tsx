@@ -14,9 +14,12 @@ export default function SearchBar() {
     const from = fromRef.current?.value?.trim() || "";
     const to = toRef.current?.value?.trim() || "";
     if (!from || !to) return;
-    const date = dateRef.current?.value || new Date().toISOString().slice(0, 10);
+    const date =
+      dateRef.current?.value || new Date().toISOString().slice(0, 10);
     const time = timeRef.current?.value || "12:00";
-    navigate(`/transfer-sonuclar?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}&time=${time}&rt=0`);
+    navigate(
+      `/transfer-sonuclar?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&date=${date}&time=${time}&rt=0`,
+    );
   };
   return (
     <div id="search" className="-mt-10 relative z-10">
@@ -77,22 +80,38 @@ export default function SearchBar() {
             <TabsContent value="yat">
               <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Bölge</label>
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Bölge
+                  </label>
                   <input
                     className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Antalya / Bodrum / Marmaris"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Kalkış Tarihi</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Kalkış Tarihi
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Süre (gün)</label>
-                  <input type="number" min={1} defaultValue={1} className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Süre (gün)
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    defaultValue={1}
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div className="flex items-end">
-                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                  <button className="btn btn-primary h-11 w-full" type="submit">
+                    Ara
+                  </button>
                 </div>
               </form>
             </TabsContent>
@@ -100,29 +119,54 @@ export default function SearchBar() {
             <TabsContent value="cruise">
               <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Kalkış Limanı</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="İstanbul / İzmir / Kuşadası" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Kalkış Limanı
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="İstanbul / İzmir / Kuşadası"
+                  />
                 </div>
                 <div className="lg:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700">Rota</label>
-                  <input className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Ege Adaları / Akdeniz" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Rota
+                  </label>
+                  <input
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    placeholder="Ege Adaları / Akdeniz"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Gidiş</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Gidiş
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700">Dönüş</label>
-                  <input type="date" className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                  <label className="block text-xs font-semibold text-slate-700">
+                    Dönüş
+                  </label>
+                  <input
+                    type="date"
+                    className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
                 </div>
                 <div className="lg:col-span-6 flex items-end">
-                  <button className="btn btn-primary h-11 w-full" type="submit">Ara</button>
+                  <button className="btn btn-primary h-11 w-full" type="submit">
+                    Ara
+                  </button>
                 </div>
               </form>
             </TabsContent>
 
             <TabsContent value="transfer">
-              <form onSubmit={onTransferSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+              <form
+                onSubmit={onTransferSubmit}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3"
+              >
                 <div className="lg:col-span-2">
                   <label className="block text-xs font-semibold text-slate-700">
                     Alış Noktası

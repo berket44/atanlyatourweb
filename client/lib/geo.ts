@@ -13,16 +13,27 @@ export async function geocode(query: string): Promise<GeocodeResult | null> {
   )}`;
   const res = await fetch(url, {
     headers: {
-      'Accept-Language': 'tr',
-      'User-Agent': 'AntalyaTourbox-Fusion/1.0',
-      'Referer': typeof window !== 'undefined' ? window.location.origin : 'https://antalyatourbox.com',
+      "Accept-Language": "tr",
+      "User-Agent": "AntalyaTourbox-Fusion/1.0",
+      Referer:
+        typeof window !== "undefined"
+          ? window.location.origin
+          : "https://antalyatourbox.com",
     },
   });
   if (!res.ok) return null;
-  const data = (await res.json()) as Array<{ lat: string; lon: string; display_name: string }>;
+  const data = (await res.json()) as Array<{
+    lat: string;
+    lon: string;
+    display_name: string;
+  }>;
   if (!data?.length) return null;
   const top = data[0];
-  return { lat: parseFloat(top.lat), lng: parseFloat(top.lon), label: top.display_name };
+  return {
+    lat: parseFloat(top.lat),
+    lng: parseFloat(top.lon),
+    label: top.display_name,
+  };
 }
 
 export function haversineKm(a: LatLng, b: LatLng): number {
@@ -34,7 +45,8 @@ export function haversineKm(a: LatLng, b: LatLng): number {
   const lat2 = toRad(b.lat);
   const sinDLat = Math.sin(dLat / 2);
   const sinDLon = Math.sin(dLon / 2);
-  const h = sinDLat * sinDLat + Math.cos(lat1) * Math.cos(lat2) * sinDLon * sinDLon;
+  const h =
+    sinDLat * sinDLat + Math.cos(lat1) * Math.cos(lat2) * sinDLon * sinDLon;
   const c = 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
   return R * c;
 }
@@ -44,7 +56,7 @@ export function estimateDuration(distanceKm: number) {
   const hoursFloat = distanceKm / 60;
   const hours = Math.floor(hoursFloat);
   const minutes = Math.round((hoursFloat - hours) * 60);
-  const text = `${hours > 0 ? hours + ' sa ' : ''}${minutes} dk`;
+  const text = `${hours > 0 ? hours + " sa " : ""}${minutes} dk`;
   return { hours, minutes, text };
 }
 

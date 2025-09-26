@@ -12,8 +12,18 @@ interface Props {
   durationText: string | null;
 }
 
-export default function MapSidebar({ fromLabel, toLabel, from, to, distanceKm, durationText }: Props) {
-  const center = useMemo<LatLng>(() => ({ lat: from?.lat ?? 36.8969, lng: from?.lng ?? 30.7133 }), [from]);
+export default function MapSidebar({
+  fromLabel,
+  toLabel,
+  from,
+  to,
+  distanceKm,
+  durationText,
+}: Props) {
+  const center = useMemo<LatLng>(
+    () => ({ lat: from?.lat ?? 36.8969, lng: from?.lng ?? 30.7133 }),
+    [from],
+  );
   const positions = useMemo(() => (from && to ? [from, to] : []), [from, to]);
   const [height, setHeight] = useState(320);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -22,7 +32,10 @@ export default function MapSidebar({ fromLabel, toLabel, from, to, distanceKm, d
   const polyRef = useRef<L.Polyline | null>(null);
 
   useEffect(() => {
-    const onResize = () => setHeight(Math.max(240, Math.min(520, Math.floor(window.innerHeight * 0.45))));
+    const onResize = () =>
+      setHeight(
+        Math.max(240, Math.min(520, Math.floor(window.innerHeight * 0.45))),
+      );
     onResize();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -34,16 +47,28 @@ export default function MapSidebar({ fromLabel, toLabel, from, to, distanceKm, d
     // Ensure single init
     if (!mapRef.current) {
       // Fix default icon URLs for bundlers
-      const markerIcon = new URL("../../node_modules/leaflet/dist/images/marker-icon.png", import.meta.url).href;
-      const markerRetina = new URL("../../node_modules/leaflet/dist/images/marker-icon-2x.png", import.meta.url).href;
-      const markerShadow = new URL("../../node_modules/leaflet/dist/images/marker-shadow.png", import.meta.url).href;
+      const markerIcon = new URL(
+        "../../node_modules/leaflet/dist/images/marker-icon.png",
+        import.meta.url,
+      ).href;
+      const markerRetina = new URL(
+        "../../node_modules/leaflet/dist/images/marker-icon-2x.png",
+        import.meta.url,
+      ).href;
+      const markerShadow = new URL(
+        "../../node_modules/leaflet/dist/images/marker-shadow.png",
+        import.meta.url,
+      ).href;
       (L.Icon.Default as any).mergeOptions({
         iconUrl: markerIcon,
         iconRetinaUrl: markerRetina,
         shadowUrl: markerShadow,
       });
 
-      const map = L.map(containerRef.current, { zoomControl: true, attributionControl: false });
+      const map = L.map(containerRef.current, {
+        zoomControl: true,
+        attributionControl: false,
+      });
       mapRef.current = map;
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "© OpenStreetMap contributors",
@@ -111,7 +136,8 @@ export default function MapSidebar({ fromLabel, toLabel, from, to, distanceKm, d
             <span className="text-slate-500">Varış:</span> {toLabel || "-"}
           </div>
           <div>
-            <span className="text-slate-500">Mesafe:</span> {distanceKm != null ? `${distanceKm.toFixed(1)} km` : "-"}
+            <span className="text-slate-500">Mesafe:</span>{" "}
+            {distanceKm != null ? `${distanceKm.toFixed(1)} km` : "-"}
           </div>
           <div>
             <span className="text-slate-500">Süre:</span> {durationText ?? "-"}
