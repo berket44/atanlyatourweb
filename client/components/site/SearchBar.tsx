@@ -1,5 +1,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import { FormEvent, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export default function SearchBar() {
   return (
     <div id="search" className="-mt-10 relative z-10">
