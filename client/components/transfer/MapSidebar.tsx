@@ -28,10 +28,14 @@ export default function MapSidebar({ fromLabel, toLabel, from, to, distanceKm, d
     <aside className="space-y-3">
       <div className="rounded-lg border overflow-hidden bg-white">
         <MapContainer center={[center.lat, center.lng]} zoom={10} style={{ height }} scrollWheelZoom={false}>
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
-          {from && <Marker position={[from.lat, from.lng]} />}
-          {to && <Marker position={[to.lat, to.lng]} />}
-          {positions.length === 2 && <Polyline positions={positions.map((p) => [p.lat, p.lng])} color="#ef4444" />}
+          {() => (
+            <>
+              <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap contributors" />
+              {from && <Marker position={[from.lat, from.lng]} />}
+              {to && <Marker position={[to.lat, to.lng]} />}
+              {positions.length === 2 && <Polyline positions={positions.map((p) => [p.lat, p.lng])} color="#ef4444" />}
+            </>
+          )}
         </MapContainer>
       </div>
 
