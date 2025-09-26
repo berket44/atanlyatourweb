@@ -122,14 +122,16 @@ export default function SearchBar() {
             </TabsContent>
 
             <TabsContent value="transfer">
-              <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+              <form onSubmit={onTransferSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
                 <div className="lg:col-span-2">
                   <label className="block text-xs font-semibold text-slate-700">
                     Alış Noktası
                   </label>
                   <input
+                    ref={fromRef}
                     className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Havalimanı / Otel / Adres"
+                    required
                   />
                 </div>
                 <div className="lg:col-span-2">
@@ -137,8 +139,10 @@ export default function SearchBar() {
                     Varış Noktası
                   </label>
                   <input
+                    ref={toRef}
                     className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Havalimanı / Otel / Adres"
+                    required
                   />
                 </div>
                 <div>
@@ -146,8 +150,10 @@ export default function SearchBar() {
                     Tarih
                   </label>
                   <input
+                    ref={dateRef}
                     type="date"
                     className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    defaultValue={new Date().toISOString().slice(0, 10)}
                   />
                 </div>
                 <div>
@@ -155,8 +161,10 @@ export default function SearchBar() {
                     Saat
                   </label>
                   <input
+                    ref={timeRef}
                     type="time"
                     className="mt-2 h-11 w-full rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                    defaultValue="12:00"
                   />
                 </div>
                 <div className="lg:col-span-6 flex items-end">
